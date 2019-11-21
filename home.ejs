@@ -1,0 +1,85 @@
+<!--
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+/*
+File name: home.ejs
+Objective: This file is written for rendering data fetched 
+from accounts in xero.
+Written by: Prabal Mahanta
+Dated 20 November 2019
+*/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+
+<body>
+    <h1 align="center"><%= topicHead %></h1>
+    <form name="form1" method="POST" action="/Xerodata">
+
+<table align="center" border="0" bgcolor="#BDC3C7" style="width:70%;height=40%;border-spacing: 5px">
+
+	<tr style="background-color:#ECF0F1">
+       		<td style="width:70%">
+           		BEANWORKS  &nbsp; &nbsp;&nbsp;&nbsp;  Settings
+        	</td>
+  	</tr>
+        <tr>
+                <td style="width:20%">
+                    General
+                </td>
+         </tr>
+
+</table>
+
+<table align="center" border="0" bgcolor="#BDC3C7" style="width:70%;height=40%;border-spacing: 5px">
+   <tr>
+       <td>
+           <table border="0" bgcolor="#D7DBDD" align="left" style="width:140px">
+                        		<tr>
+                            		<td nowrap> My Profile </td> 
+                        		</tr>
+            
+                        		<tr> 
+                               		<td nowrap> Data Mangement </td>
+                         		</tr>
+            </table>
+       </td>
+       <td>
+             <table border="0" align="center" style="width:400px" cellpadding="2">
+                 <tr tr style="font-weight:bold">
+                    <td>Data Management</td>
+                </tr>
+             </table>
+             <table border="0" align="center" style="width:400px"cellpadding="2">
+                 <tr>
+                    <td><input type="submit" value="Sync" ></td>
+                </tr>
+              </table>
+       </td>
+   </tr>
+</table>	
+      
+ </form>   
+
+   <div id="bdiv" align="center">
+
+   <% if(userValue!=null){ %> 
+    <% for(var exKey in userValue.alldata) {%>
+                 
+           <% if (exKey == 'Accounts'){ %>
+
+           <table align="center" border="0" bgcolor="#BDC3C7" style="width:70%;height=40%;border-spacing: 0px">
+                  
+                <tr style="font-weight:bold">
+                <td nowrap> AccountID </td> <td> Name </td> <td> Status </td> <td>  UpdatedDateUTC </td>
+                </tr>
+                <% userValue.alldata.Accounts.forEach( function(item) { %>
+               		<tr>
+               		<td nowrap><%= item.AccountID %></td> <td><%=item.Name %></td> <td><%= item.Status %></td> <td><%= item.UpdatedDateUTC %></td>
+               		</tr>
+                        
+               <%})%>
+              </table>
+      <%}}}%>
+     
+  </div>
+
+</body>
